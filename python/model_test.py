@@ -4,7 +4,7 @@ import pandas as pd
 # CONSTANTES
 DF_NAME = "df_robust.csv"
 NOBIKE_LABEL = "no_bike"
-MODEL_NAME = "ecobike_model.pkl"
+MODEL_NAME = "app_model.pkl"
 
 # Leer datos CSV
 df = pd.read_csv(DF_NAME, index_col=0)

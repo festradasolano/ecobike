@@ -1,6 +1,7 @@
 import math
 
 from io import StringIO
+from pathlib import Path
 
 import joblib
 import pandas as pd
@@ -10,8 +11,9 @@ from flask import Flask, request, jsonify
 from werkzeug.utils import secure_filename
 
 # Constantes
-MODEL_NAME = "ecobike_model.pkl"
-SCALER_NAME = "robust_scaler.pkl"
+APP_PATH = "/git/ecobike/python/"
+MODEL_NAME = "app_model.pkl"
+SCALER_NAME = "app_scaler.pkl"
 
 # Valores medios de altitud para reemplazar valores perdidos
 MEAN_ALT_MEAN = 237.91719764827465
@@ -35,10 +37,12 @@ MEAN_ALT_SPEED_Q3 = 0.9173111218901985
 app = Flask(__name__)
 
 # Cargar modelo de clasificación y escalador
-clf = joblib.load(MODEL_NAME)
+home_path = str(Path.home())
+
+clf = joblib.load(home_path + APP_PATH + MODEL_NAME)
 app.logger.info("Modelo de clasificación '%s' cargado", MODEL_NAME)
 
-scaler = joblib.load(SCALER_NAME)
+scaler = joblib.load(home_path + APP_PATH + SCALER_NAME)
 app.logger.info("Escalador '%s' cargado", SCALER_NAME)
 
 # Ruta de prueba

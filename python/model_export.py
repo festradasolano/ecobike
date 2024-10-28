@@ -8,7 +8,7 @@ from sklearn.ensemble import GradientBoostingClassifier
 DF_PATH = "datasets/df_robust.csv"
 RANDOM_STATE = 1
 NOBIKE_LABEL = "no_bike"
-MODEL_NAME = "ecobike_model.pkl"
+MODEL_NAME = "app_model.pkl"
 
 # Leer datos CSV
 df = pd.read_csv(DF_PATH, index_col=0)

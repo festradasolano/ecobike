@@ -7,7 +7,7 @@ from sklearn.preprocessing import RobustScaler
 
 # CONSTANTES
 DF_PATH = "datasets/df_clean.csv"
-SCALER_NAME = "robust_scaler.pkl"
+SCALER_NAME = "app_scaler.pkl"
 
 # Leer datos CSV
 df = pd.read_csv(DF_PATH, index_col=0)
