@@ -40,10 +40,12 @@ app = Flask(__name__)
 home_path = str(Path.home())
 
 clf = joblib.load(home_path + APP_PATH + MODEL_NAME)
-app.logger.info("Modelo de clasificación '%s' cargado", MODEL_NAME)
+#app.logger.info("Modelo de clasificación '%s' cargado", MODEL_NAME)
+print("Modelo de clasificación '{}' cargado".format(MODEL_NAME))
 
 scaler = joblib.load(home_path + APP_PATH + SCALER_NAME)
-app.logger.info("Escalador '%s' cargado", SCALER_NAME)
+#app.logger.info("Escalador '%s' cargado", SCALER_NAME)
+print("Escalador '{}' cargado".format(SCALER_NAME))
 
 # Ruta de prueba
 @app.route('/')
@@ -54,7 +56,8 @@ def hello():
 @app.post("/usuarios/<string:user_id>/recorridos/<string:record_id>")
 def analyze_csvdata(user_id, record_id):
     try:
-        app.logger.info("Analizando recorrido '%s' del usuario '%s'", record_id, user_id)
+        #app.logger.info("Analizando recorrido '%s' del usuario '%s'", record_id, user_id)
+        print("Analizando recorrido '{}' del usuario '{}'".format(record_id, user_id))
 
         # Leer datos CSV del recorrido en la solicitud
         request_data = request.get_json()
@@ -78,7 +81,8 @@ def analyze_csvdata(user_id, record_id):
         y_pred = clf.predict(x)
 
         # Retornar clasificación
-        app.logger.info("Recorrido '%s' del usuario '%s' ha sido clasificado como '%s'", record_id, user_id, y_pred[0])
+        #app.logger.info("Recorrido '%s' del usuario '%s' ha sido clasificado como '%s'", record_id, user_id, y_pred[0])
+        print("Recorrido '{}' del usuario '{}' ha sido clasificado como '{}'".format(record_id, user_id, y_pred[0]))
         return jsonify([{"clase": y_pred[0]}])
     
     except:
