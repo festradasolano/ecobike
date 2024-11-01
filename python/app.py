@@ -50,7 +50,7 @@ print("Escalador '{}' cargado".format(SCALER_NAME))
 # Ruta de prueba
 @app.route('/')
 def hello():
-    return jsonify([{"response": "Hello, EcoBike!"}])
+    return jsonify({"response": "Hello, EcoBike!"})
 
 # API para analizar datos CSV del recorrido
 @app.post("/usuarios/<string:user_id>/recorridos/<string:record_id>")
@@ -83,10 +83,10 @@ def analyze_csvdata(user_id, record_id):
         # Retornar clasificación
         #app.logger.info("Recorrido '%s' del usuario '%s' ha sido clasificado como '%s'", record_id, user_id, y_pred[0])
         print("Recorrido '{}' del usuario '{}' ha sido clasificado como '{}'".format(record_id, user_id, y_pred[0]))
-        return jsonify([{"clase": y_pred[0]}])
+        return jsonify({"clase": y_pred[0]})
     
     except:
-        return jsonify([{"clase": "error"}]), 500
+        return jsonify({"clase": "error"}), 500
 
 
 # Genera los atributos de una instancia a partir de un dataframe del recorrido
